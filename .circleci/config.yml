@@ -78,6 +78,6 @@ workflows:
           requires:
             - build
       - deploy:
-          context: NETLIFY_AUTH_TOKEN
+          context: GatsbyNetlify
           requires:
             - lint
