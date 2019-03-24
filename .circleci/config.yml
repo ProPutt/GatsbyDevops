@@ -48,10 +48,16 @@ jobs:
     - run:
         name: Build Public
         command: npm run build
+    - persist_to_workspace:
+        root: /home/circleci
+        paths:
+          - public
   deploy:
     executor: node
     steps:
     - checkout
+    - attach_workspace:
+        at: /home/circleci/public
     - <<: *restore_cache
     - <<: *install_node_modules
     - run:
@@ -68,11 +74,6 @@ workflows:
     jobs:
       - install
       - build_and_lint:
-          steps:
-            - persist_to_workspace:
-                root: /home/circleci
-                paths:
-                  - public
           requires:
             - install
       - deploy:
