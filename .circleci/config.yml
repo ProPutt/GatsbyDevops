@@ -70,7 +70,7 @@ workflows:
       - build_and_lint:
           steps:
             - persist_to_workspace
-               root: /home/circleci/
+               root: home/circleci
                paths:
                 - public
           requires:
@@ -78,7 +78,7 @@ workflows:
       - deploy:
           steps:
             - attach_workspace:
-              at: ./public
+              at: public
           context: GatsbyNetlify
           requires:
             - build_and_lint
