@@ -24,7 +24,7 @@ aliases:
       name: Save NPM package cache
       key: v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum ".circleci/config.yml" }}
       paths:
-      - /home/circleci/.cache
+      - ./node_modules
 
 version: 2.1
 
@@ -42,9 +42,6 @@ jobs:
     - checkout
     - <<: *restore_cache
     - <<: *install_node_modules
-    - run:
-        name: Run ESLint
-        command: npm run eslint
     - run:
         name: Build Public
         command: npm run build
