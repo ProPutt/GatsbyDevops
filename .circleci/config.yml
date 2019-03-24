@@ -49,15 +49,15 @@ jobs:
         name: Build Public
         command: npm run build
     - persist_to_workspace:
-        root: /home/circleci
+        root: /home/circleci/project
         paths:
-          - project/public
+          - public
   deploy:
     executor: node
     steps:
     - checkout
     - attach_workspace:
-        at: /home/circleci/project/public
+        at: /home/circleci/project/
     - <<: *restore_cache
     - <<: *install_node_modules
     - run:
