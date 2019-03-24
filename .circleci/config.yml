@@ -57,7 +57,7 @@ jobs:
     steps:
     - checkout
     - attach_workspace:
-        at: /home/circleci/project
+        at: /home/circleci/project/public
     - <<: *restore_cache
     - <<: *install_node_modules
     - run:
