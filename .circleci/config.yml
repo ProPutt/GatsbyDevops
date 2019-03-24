@@ -55,13 +55,28 @@ jobs:
         command: npm run eslint
     - <<: *store_results
     - <<: *store_results_artifacts
+  deploy:
+    executor: node
+    steps:
+    - checkout
+    - <<: *restore_cache
+    - <<: *install_node_modules
+    - run:
+        name: install netlify cli
+        command: npm install netlify-cli -g
+    - run:
+        name: deploy site to netlify
+        command: netlify deploy
 
 
 workflows:
   version: 2
-  lint-test:
+  build_and_deploy:
     jobs:
       - build
       - lint:
           requires:
             - build
+      - deploy
+          requires:
+            - lint
