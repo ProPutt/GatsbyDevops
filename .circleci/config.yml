@@ -59,7 +59,7 @@ jobs:
     - run:
         name: install netlify cli
         command: sudo npm install netlify-cli -g
-      run: 
+    - run: 
         name: build
     - run:
         name: deploy site to netlify
