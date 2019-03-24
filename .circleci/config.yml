@@ -48,7 +48,6 @@ jobs:
     - run:
         name: Build Public
         command: npm run build
-    - <<: *store_build_artifacts
   deploy:
     executor: node
     steps:
