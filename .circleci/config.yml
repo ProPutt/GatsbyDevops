@@ -26,13 +26,9 @@ aliases:
       paths:
       - /home/circleci/.cache
 
-  store_results: &store_results
-    store_test_results:
-      path: results
-
-  store_results_artifacts: &store_results_artifacts
+  store_build_artifacts: &store_build_artifacts
     store_artifacts:
-      path: results
+      path: public
 
 version: 2.1
 
@@ -53,8 +49,7 @@ jobs:
     - run:
         name: Run ESLint
         command: npm run eslint
-    - <<: *store_results
-    - <<: *store_results_artifacts
+    - <<: *store_build_artifacts
   deploy:
     executor: node
     steps:
@@ -64,6 +59,8 @@ jobs:
     - run:
         name: install netlify cli
         command: sudo npm install netlify-cli -g
+      run: 
+        name: build
     - run:
         name: deploy site to netlify
         command: netlify deploy
