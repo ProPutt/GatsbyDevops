@@ -69,10 +69,10 @@ workflows:
       - install
       - build_and_lint:
           steps:
-            - persist_to_workspace
-              root: home/circleci
-              paths:
-                - public
+            - persist_to_workspace:
+                root: /home/circleci
+                paths:
+                  - public
           requires:
             - install
       - deploy:
