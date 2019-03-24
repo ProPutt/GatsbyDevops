@@ -26,10 +26,6 @@ aliases:
       paths:
       - /home/circleci/.cache
 
-  store_build_artifacts: &store_build_artifacts
-    store_artifacts:
-      path: public
-
 version: 2.1
 
 jobs:
@@ -73,9 +69,15 @@ workflows:
     jobs:
       - install
       - build_and_lint:
+          steps:
+            - persist_to_workspace
+               root: public
           requires:
             - install
       - deploy:
+          steps:
+            - attach_workspace:
+              at: /public
           context: GatsbyNetlify
           requires:
             - build_and_lint
