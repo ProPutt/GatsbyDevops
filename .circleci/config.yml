@@ -65,7 +65,7 @@ jobs:
         command: sudo npm install netlify-cli -g
     - run: 
         name: deploy site to netlify
-        command: netlify deploy -p
+        command: netlify deploy --dir=/home/circleci/project/public -p
 
 
 workflows:
