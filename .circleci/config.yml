@@ -77,7 +77,7 @@ workflows:
       - lint:
           requires:
             - build
-      - deploy
+      - deploy:
           context: NETLIFY_AUTH_TOKEN
           requires:
             - lint
