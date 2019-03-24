@@ -57,7 +57,7 @@ jobs:
     steps:
     - checkout
     - attach_workspace:
-        at: /home/circleci/public
+        at: ./public
     - <<: *restore_cache
     - <<: *install_node_modules
     - run:
@@ -77,9 +77,6 @@ workflows:
           requires:
             - install
       - deploy:
-          steps:
-            - attach_workspace:
-                at: ./public
           context: GatsbyNetlify
           requires:
             - build_and_lint
