@@ -51,13 +51,13 @@ jobs:
     - persist_to_workspace:
         root: /home/circleci
         paths:
-          - public
+          - project/public
   deploy:
     executor: node
     steps:
     - checkout
     - attach_workspace:
-        at: ./public
+        at: /home/circleci/project/public
     - <<: *restore_cache
     - <<: *install_node_modules
     - run:
