@@ -46,7 +46,7 @@ jobs:
         name: Build Public
         command: npm run build
     - persist_to_workspace:
-        root: ~/
+        root: /
         paths:
           - public
   deploy:
@@ -54,7 +54,7 @@ jobs:
     steps:
     - checkout
     - attach_workspace:
-        at: ~/
+        at: /
     - <<: *restore_cache
     - <<: *install_node_modules
     - run:
@@ -62,7 +62,7 @@ jobs:
         command: sudo npm install netlify-cli -g
     - run: 
         name: deploy site to netlify
-        command: netlify deploy --dir=~/public -p
+        command: netlify deploy --dir=/public -p
 
 
 workflows:
